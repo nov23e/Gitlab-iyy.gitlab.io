@@ -103,8 +103,7 @@ print('Dockerfile was updated to version %s'%release['name'][1:])
 requestData = {
         'tag_name': release['name'][1:],
         'ref': 'registry',
-        'message': COMMIT_MESSAGE%(release['name'][1:]),
-        'release_description': release['body'],
+        'message': COMMIT_MESSAGE%(release['name'][1:])
 }
 rtag = requests.post('%s/projects/%s/repository/tags'%(
     GITLAB_URL,

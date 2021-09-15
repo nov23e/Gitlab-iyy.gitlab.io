@@ -8,7 +8,7 @@ test:
   script:
   - hugo
   except:
-  - master
+  - $CI_DEFAULT_BRANCH
 
 pages:
   script:
@@ -17,4 +17,4 @@ pages:
     paths:
     - public
   only:
-  - master
+  - $CI_DEFAULT_BRANCH

@@ -32,7 +32,7 @@ COPY --from=0 /usr/bin/hugo /usr/bin
 RUN set -eux && \
     case ${HUGO} in \
       *_extended) \
-        apk add --update --no-cache libc6-compat libstdc++ && \
+        apk add --update --no-cache libc6-compat tzdata libstdc++ && \
         rm -rf /var/cache/apk/* ;; \
     esac && \
     hugo version

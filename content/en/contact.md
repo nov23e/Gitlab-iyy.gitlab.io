@@ -7,5 +7,8 @@ type: page
 menu: main
 ---
 
-You can add a custom shortcode that you can put right into your content. You will need to add a form action to the shortcode to make it work.
-Read more at <https://github.com/theNewDynamic/gohugo-theme-ananke/blob/master/exampleSite/content/en/contact.md>.
+This is an example of a custom shortcode that you can put right into your content. You will need to add a form action to the shortcode to make it work.
+
+Read more on [how to enable the contact form](https://github.com/theNewDynamic/gohugo-theme-ananke/#activate-the-contact-form).
+
+{{< form-contact action="https://example.com"  >}}

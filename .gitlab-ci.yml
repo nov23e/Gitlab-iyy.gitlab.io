@@ -20,7 +20,8 @@ default:
   before_script:
     - apk add --update --no-cache git go
     - git submodule update --init --recursive
-    - go mod init github.com/theNewDynamic/gohugo-theme-ananke
+    # Change this to your forked Hugo repository URL
+    - go mod init gitlab.com/pages/hugo
 
 test:
   script:

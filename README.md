@@ -32,18 +32,48 @@ To work locally with this project, you'll have to follow the steps below:
 
 1. Fork, clone or download this project
 1. [Install][] Hugo
-1. Preview your project: `hugo server`
-1. Add content
+1. Preview your project: `hugo server`.
+1. Add content.
 1. Generate the website: `hugo` (optional)
 
 Read more at Hugo's [documentation][].
 
-### Preview your site
+## Use a custom theme
 
-If you clone or download this project to your local computer and run `hugo server`,
-your site can be accessed under `localhost:1313/hugo/`.
+To use a custom theme:
 
-The theme used is adapted from http://themes.gohugo.io/beautifulhugo/.
+1. Visit <https://themes.gohugo.io/> and pick the theme you want to use.
+1. Uncomment the following lines from `.gitlab-ci.yml`, replacing `<theme_url>`
+   with the URL of the theme you chose:
+
+   ```yaml
+   - svn export <theme_url> themes/<theme_name>
+   ```
+
+1. Edit `config.toml` and add the theme:
+
+   ```plaintext
+   theme = "themes/<theme_name>"
+   ```
+
+## `hugo` vs `hugo_extended`
+
+The [Container Registry](https://gitlab.com/pages/hugo/container_registry)
+contains two kinds of Hugo Docker images, `hugo` and
+`hugo_extended`. Their main difference is that `hugo_extended` comes with
+Sass/SCSS support. If you don't know if your theme supports it, it's safe to
+use `hugo_extended` since it's a superset of `hugo`.
+
+The Container Registry contains three repositories:
+
+- `registry.gitlab.com/pages/hugo`
+- `registry.gitlab.com/pages/hugo/hugo`
+- `registry.gitlab.com/pages/hugo/hugo_extended`
+
+`pages/hugo:<version>` and `pages/hugo/hugo:<version>` are effectively the same.
+`hugo_extended` was created afterwards, so we had to create the `pages/hugo/` namespace.
+
+See [how the images are built and deployed](https://gitlab.com/pages/hugo/-/blob/707b8e367cdea5dbf471ff5bbec9f684ae51de79/.gitlab-ci.yml#L36-47).
 
 ## GitLab User or Group Pages
 

@@ -40,20 +40,27 @@ Read more at Hugo's [documentation][].
 
 ## Use a custom theme
 
-To use a custom theme:
+Hugo supports a variety of themes.
 
-1. Visit <https://themes.gohugo.io/> and pick the theme you want to use.
-1. Uncomment the following lines from `.gitlab-ci.yml`, replacing `<theme_url>`
-   with the URL of the theme you chose:
+Visit <https://themes.gohugo.io/> and pick the theme you want to use. In the
+Pages example, we use <https://themes.gohugo.io/themes/gohugo-theme-ananke/>.
+
+### Use a custom theme using a Hugo module
+
+The example [`.gitlab-ci.yml`](.gitlab-ci.yml) uses Hugo modules to import the theme.
+
+To use your own theme:
+
+1. Edit `.gitlab-ci.yml`, and replace the URL in the `hugo mod get` line with the URL of your theme:
 
    ```yaml
-   - svn export <theme_url> themes/<theme_name>
+   - hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
    ```
 
 1. Edit `config.toml` and add the theme:
 
    ```plaintext
-   theme = "themes/<theme_name>"
+   theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
    ```
 
 ## `hugo` vs `hugo_extended`

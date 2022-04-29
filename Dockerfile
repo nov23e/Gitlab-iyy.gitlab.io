@@ -9,9 +9,9 @@
 # to work around segmentation fault issues.
 FROM golang:1.13-alpine
 ARG HUGO=hugo
-ARG HUGO_VERSION=0.97.3
-ARG HUGO_SHA=3d3de272b895a95849ec5011a254da2e34148ed6f03bab24e3930c1f5ee52cdf
-ARG HUGO_EXTENDED_SHA=104ffb5c3130cd3d25e331566d9b86e153cbbdad761defe5defa027bb23543b6
+ARG HUGO_VERSION=0.98.0
+ARG HUGO_SHA=526807a00eb867a2c06e65f9bd0f34cf71b281040e2955ad18a8ccc83ac92c45
+ARG HUGO_EXTENDED_SHA=66577b6aad435073bc9d16f5e12a83566d1ceafcdfb09e3f06045562216c69fc
 RUN set -eux && \
     case ${HUGO} in \
       *_extended) \

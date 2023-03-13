@@ -11,23 +11,21 @@
 #
 image: registry.gitlab.com/pages/hugo/hugo_extended:latest
 
-# Set this if you intend to use Git submodules
 variables:
-  GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
+  DEBIAN_FRONTEND: noninteractive
 
 # ATTENTION #
 # From Hugo version 0.111.3 and onwards, the base image was switched
 # from Alpine to Debian, see https://gitlab.com/pages/hugo/-/merge_requests/175.
-# If you're still using a Hugo version older than 0.111.3, uncomment the
-# Alpine line below and comment out the Debian one.
 default:
   before_script:
-    #- apk add --update --no-cache git go
-    - apt update && apt install -y git golang
-    - git submodule update --init --recursive
+    - apt update -qq && apt install -y git golang curl bash
     - hugo mod init gitlab.com/pages/hugo
     - hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
+    # Install a newer version of Nodejs
+    - curl -fsSL https://deb.nodesource.com/setup_19.x | bash -
+    - apt-get install -y nodejs
 
 test:
   script:

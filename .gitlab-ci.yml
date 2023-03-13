@@ -16,9 +16,15 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
 
+# ATTENTION #
+# From Hugo version 0.111.3 and onwards, the base image was switched
+# from Alpine to Debian, see https://gitlab.com/pages/hugo/-/merge_requests/175.
+# If you're still using a Hugo version older than 0.111.3, uncomment the
+# Alpine line below and comment out the Debian one.
 default:
   before_script:
-    - apk add --update --no-cache git go
+    #- apk add --update --no-cache git go
+    - apt update && apt install -y git golang
     - git submodule update --init --recursive
     - hugo mod init gitlab.com/pages/hugo
     - hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke

@@ -1,23 +1,28 @@
 # Dockerfile for Hugo (HUGO=hugo) / Hugo Extended (HUGO=hugo_extended)
 # HUGO_VERSION / HUGO_SHA / HUGO_EXTENDED_SHA is automatically updated
 # by update.py when new release is available on the upstream.
-# Use multi-stage builds to make images optimized in size.
 
-FROM golang:1.20-bullseye
+FROM golang:1.20-alpine
 ARG HUGO=hugo
 ARG HUGO_VERSION=0.111.3
-ARG HUGO_SHA=61500f6d39a23d36b946a9f44611c804aec4f1379d6113528672b1ac3077397a
-ARG HUGO_EXTENDED_SHA=b382aacb522a470455ab771d0e8296e42488d3ea4e61fe49c11c32ec7fb6ee8b
 RUN set -eux && \
     case ${HUGO} in \
+      hugo) \
+        TAGS_EXTENDED="" ;; \
       *_extended) \
-        HUGO_SHA="${HUGO_EXTENDED_SHA}" ;; \
+        TAGS_EXTENDED="--tags extended" ; \
+        CGO_ENABLED=1 ;; \
     esac && \
-    apt update && \
-    apt install ca-certificates openssl tzdata git && \
-    wget -O ${HUGO_VERSION}.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO}_${HUGO_VERSION}_Linux-64bit.tar.gz && \
-    echo "${HUGO_SHA}  ${HUGO_VERSION}.tar.gz" | sha256sum -c && \
-    tar xf ${HUGO_VERSION}.tar.gz && mv hugo* /usr/bin/hugo && \
+    apk add git build-base && \
+    go install ${TAGS_EXTENDED} github.com/gohugoio/hugo@v${HUGO_VERSION}
+
+# Second stage - build the final image with minimal apk dependencies.
+FROM alpine:3.16
+ARG HUGO=hugo
+COPY --from=0 /go/bin/hugo /usr/bin
+# libc6-compat & libstdc++ are required for extended SASS libraries
+# ca-certificates are required to fetch outside resources (like Twitter oEmbeds)
+RUN apk add --no-cache ca-certificates libc6-compat libstdc++ git && \
     hugo version
 EXPOSE 1313
 WORKDIR /src

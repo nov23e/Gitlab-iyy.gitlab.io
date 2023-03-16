@@ -107,18 +107,3 @@ unless you want to contribute back to the upstream project.
 - Or your static generator has a configuration option that needs to be explicitly
   set in order to serve static assets under a relative URL.
 
-### Hugo fails to build the website
-
-If the version of `hugo` or `hugo_extended` is 0.92.2 or later, you may have problems building the website.
-
-Generics were introduced in [Go 1.18](https://go.dev/blog/go1.18), and they broke some features in the newer versions of Hugo. For now, if you use `hugo` or `hugo_extended` versions 0.92.2 or later, you might encounter problems building the website. To resolve the problem:
-
-1. Edit your `.gitlab-ci.yaml` file.
-1. Identify the line that declares the Hugo version.
-1. Change the value to `:0.92.2`.
-1. Save your changes
-
-For more information about this issue:
-
-- This issue is tracked in [Gitlab Hugo template fails CI/CD build with "latest" docker version](https://gitlab.com/pages/hugo/-/issues/69).
-- For discussions about fixing the problem in Hugo, and proposals to potentially resolve these issues, read [proposal: spec: allow type parameters in methods](https://github.com/golang/go/issues/49085).

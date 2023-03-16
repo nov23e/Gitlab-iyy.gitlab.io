@@ -13,19 +13,15 @@ image: registry.gitlab.com/pages/hugo/hugo_extended:latest
 
 variables:
   HUGO_ENV: production
-  DEBIAN_FRONTEND: noninteractive
 
 # ATTENTION #
 # From Hugo version 0.111.3 and onwards, the base image was switched
 # from Alpine to Debian, see https://gitlab.com/pages/hugo/-/merge_requests/175.
 default:
   before_script:
-    - apt update -qq && apt install -y git golang curl bash
+    - apk add git golang curl bash nodejs
     - hugo mod init gitlab.com/pages/hugo
     - hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
-    # Install a newer version of Nodejs
-    - curl -fsSL https://deb.nodesource.com/setup_19.x | bash -
-    - apt-get install -y nodejs
 
 test:
   script:

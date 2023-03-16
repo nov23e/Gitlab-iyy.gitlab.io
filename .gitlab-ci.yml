@@ -19,7 +19,7 @@ variables:
 # from Alpine to Debian, see https://gitlab.com/pages/hugo/-/merge_requests/175.
 default:
   before_script:
-    - apk add git golang curl bash nodejs
+    - apk add --no-cache go curl bash nodejs
     - hugo mod init gitlab.com/pages/hugo
     - hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
 

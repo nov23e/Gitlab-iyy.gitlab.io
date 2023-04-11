@@ -22,7 +22,7 @@ ARG HUGO=hugo
 COPY --from=0 /go/bin/hugo /usr/bin
 # libc6-compat & libstdc++ are required for extended SASS libraries
 # ca-certificates are required to fetch outside resources (like Twitter oEmbeds)
-RUN apk add --no-cache ca-certificates libc6-compat libstdc++ git && \
+RUN apk add --no-cache ca-certificates libc6-compat libstdc++ git tzdata && \
     hugo version
 EXPOSE 1313
 WORKDIR /src

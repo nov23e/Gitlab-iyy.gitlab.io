@@ -14,9 +14,6 @@ image: registry.gitlab.com/pages/hugo/hugo_extended:latest
 variables:
   HUGO_ENV: production
 
-# ATTENTION #
-# From Hugo version 0.111.3 and onwards, the base image was switched
-# from Alpine to Debian, see https://gitlab.com/pages/hugo/-/merge_requests/175.
 default:
   before_script:
     - apk add --no-cache go curl bash nodejs

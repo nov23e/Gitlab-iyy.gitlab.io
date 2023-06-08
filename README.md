@@ -85,9 +85,8 @@ See [how the images are built and deployed](https://gitlab.com/pages/hugo/-/blob
 To use this project as your user/group website, you will need to perform
 some additional steps:
 
-1. Rename your project to `namespace.gitlab.io`, where `namespace` is
-   your `username` or `groupname`. This can be done by navigating to your
-   project's **Settings > General (Advanced)**.
+1. [Rename your repository](https://docs.gitlab.com/ee/user/project/settings/#rename-a-repository) to `namespace.gitlab.io`, where `namespace` is
+   your `username` or `groupname`.
 1. Change the `baseurl` setting in your `config.toml`, from `"https://pages.gitlab.io/hugo/"` to `baseurl = "https://namespace.gitlab.io"`.
    Proceed equally if you are using a custom domain: `baseurl = "https://example.com"`.
 

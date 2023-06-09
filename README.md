@@ -126,7 +126,13 @@ unless you want to contribute back to the upstream project.
 
 ## Troubleshooting
 
-### CSS is missing! That means two things:
+### CSS is missing!
+
+That means two things:
 
 - Either that you have wrongly set up the CSS URL in your templates.
 - Or the [`baseURL`](https://gohugo.io/getting-started/configuration/#baseurl) in [`config.toml`](/config.toml) is not corretly set. For more information see issue https://gitlab.com/pages/hugo/-/issues/18.
+
+### Minify the assets
+
+If you want to minify the assets (JS, CSS, images, etc.), take a look at the [Hugo documentation](https://gohugo.io/getting-started/configuration/#configure-minify) and at this [merge request](https://gitlab.com/pages/hugo/-/merge_requests/79).

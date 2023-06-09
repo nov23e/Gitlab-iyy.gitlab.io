@@ -129,4 +129,4 @@ unless you want to contribute back to the upstream project.
 ### CSS is missing! That means two things:
 
 - Either that you have wrongly set up the CSS URL in your templates.
-- Or `baseURL` in [`config.toml`](/config.toml) is not corretly set. For more information see issue https://gitlab.com/pages/hugo/-/issues/18.
+- Or the [`baseURL`](https://gohugo.io/getting-started/configuration/#baseurl) in [`config.toml`](/config.toml) is not corretly set. For more information see issue https://gitlab.com/pages/hugo/-/issues/18.

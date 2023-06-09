@@ -17,7 +17,6 @@ To work locally with this project, you'll have to follow the steps below:
 1. Install the theme as a Hugo module:
 
    ```shell
-   hugo mod init gitlab.com/pages/hugo
    hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
    ```
 
@@ -47,19 +46,46 @@ Pages example, we use <https://themes.gohugo.io/themes/gohugo-theme-ananke/>.
 
 The example [`.gitlab-ci.yml`](.gitlab-ci.yml) uses Hugo modules to import the theme.
 
-To use your own theme:
+To use your own theme, the following steps will help you recreate the hugo modules
+that include the information of your theme. You must perform them locally:
 
-1. Edit `.gitlab-ci.yml`, and replace the URL in the `hugo mod get` line with the URL of your theme:
+1. Edit `config.toml` and comment out the already existing theme:
 
-   ```yaml
-   - hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
+   ```plaintext
+   #theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
    ```
 
-1. Edit `config.toml` and add the theme:
+1. Remove `go.mod` and `go.sum`:
+
+   ```shell
+   rm -f go.mod go.sum
+   ```
+
+1. Recreate the theme module:
+
+   ```shell
+   hugo mod init gitlab.com/pages/hugo
+   ```
+
+1. Recreate the checksum:
+
+   ```shell
+   hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
+   ```
+
+1. Edit `config.toml` and add the theme back:
 
    ```plaintext
    theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
    ```
+
+1. Finally, edit `.gitlab-ci.yml`, and replace the `THEME_URL` variable with the URL of your theme:
+
+   ```yaml
+   THEME_URL: "github.com/theNewDynamic/gohugo-theme-ananke"
+   ```
+
+1. Commit all the changes and push them to your repository.
 
 ## `hugo` vs `hugo_extended`
 

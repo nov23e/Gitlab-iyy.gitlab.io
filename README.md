@@ -129,6 +129,4 @@ unless you want to contribute back to the upstream project.
 ### CSS is missing! That means two things:
 
 - Either that you have wrongly set up the CSS URL in your templates.
-- Or your static generator has a configuration option that needs to be explicitly
-  set in order to serve static assets under a relative URL.
-
+- Or `baseURL` in [`config.toml`](/config.toml) is not corretly set. For more information see issue https://gitlab.com/pages/hugo/-/issues/18.

@@ -26,4 +26,4 @@ RUN apk add --no-cache ca-certificates libc6-compat libstdc++ git tzdata && \
     hugo version
 EXPOSE 1313
 WORKDIR /src
-CMD ["/usr/bin/hugo"]
+ENTRYPOINT ["/usr/bin/hugo"]

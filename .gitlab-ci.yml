@@ -25,8 +25,10 @@ test:
     - TESTS="wget -qO- https://fedoraproject.org/static/hotspot.txt | grep OK && cd /git && hugo"
     - docker build --build-arg HUGO=hugo -t $IMAGE_NAME_HUGO .
     - docker build --build-arg HUGO=hugo_extended -t $IMAGE_NAME_HUGO_EXTENDED .
-    - docker run -v `pwd`:/git $IMAGE_NAME_HUGO /bin/sh -c "$TESTS"
-    - docker run -v `pwd`:/git $IMAGE_NAME_HUGO_EXTENDED /bin/sh -c "$TESTS"
+    - docker run -v `pwd`:/git --entrypoint='' $IMAGE_NAME_HUGO /bin/sh -c "$TESTS"
+    - docker run -v `pwd`:/git --entrypoint='' $IMAGE_NAME_HUGO_EXTENDED /bin/sh -c "$TESTS"
+    - docker run -v `pwd`:/git $IMAGE_NAME_HUGO -h
+    - docker run -v `pwd`:/git $IMAGE_NAME_HUGO_EXTENDED -h
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_TAG

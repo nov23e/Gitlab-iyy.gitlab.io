@@ -12,7 +12,7 @@ following the steps defined in [`.gitlab-ci.yml`](.gitlab-ci.yml).
 To work locally with this project, you'll have to follow the steps below:
 
 1. Fork, clone or download this project.
-1. Install `git` and `go`.
+1. Install [`git`](https://docs.gitlab.com/ee/topics/git/how_to_install_git/), [`go`](https://go.dev/doc/install), and [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 1. [Install](https://gohugo.io/getting-started/installing/) Hugo.
 1. Install the theme as a Hugo module:
 

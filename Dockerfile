@@ -2,7 +2,7 @@
 # HUGO_VERSION / HUGO_SHA / HUGO_EXTENDED_SHA is automatically updated
 # by update.py when new release is available on the upstream.
 
-FROM golang:1.20-alpine
+FROM golang:1.21-alpine
 ARG HUGO=hugo
 ARG HUGO_VERSION=0.121.1
 RUN set -eux && \
@@ -17,7 +17,7 @@ RUN set -eux && \
     go install ${TAGS_EXTENDED} github.com/gohugoio/hugo@v${HUGO_VERSION}
 
 # Second stage - build the final image with minimal apk dependencies.
-FROM alpine:3.16
+FROM alpine:3.19
 ARG HUGO=hugo
 COPY --from=0 /go/bin/hugo /usr/bin
 # libc6-compat & libstdc++ are required for extended SASS libraries

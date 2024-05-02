@@ -4,7 +4,7 @@
 
 FROM golang:1.21-alpine
 ARG HUGO=hugo
-ARG HUGO_VERSION=0.125.4
+ARG HUGO_VERSION=0.125.5
 RUN set -eux && \
     case ${HUGO} in \
       hugo) \
